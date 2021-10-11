@@ -10,6 +10,6 @@ RUN npm run build
 FROM registry.access.redhat.com/ubi8/nginx-118
 USER root
 RUN mkdir /app
-COPY --from=build /var/run/app/dist /var/run/app
-RUN chown -R 1001:0 /var/run/app
+COPY --from=build /app/dist /app
+#RUN chown -R 1001:0 /var/run/app
 USER 1001
