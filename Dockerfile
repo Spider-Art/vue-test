@@ -9,10 +9,10 @@ RUN npm run build
 
 FROM registry.access.redhat.com/ubi8/nginx-118
 USER root
-RUN mkdir /app
-COPY --from=BUILD /app/dist /app
+#RUN mkdir /app
+COPY --from=BUILD /app/dist /opt/app-root/src
 #COPY /app/dist /opt/app-root/src/dist
-COPY /app/js/app*.js /opt/app-root/src/
-#RUN chown -R 1001:0 /var/run/app
+#COPY /app/js/app*.js /opt/app-root/src/
+RUN chown -R 1001:0 /opt/app-root/src
 USER 1001
 CMD ["nginx", "-g", "daemon off;"]
