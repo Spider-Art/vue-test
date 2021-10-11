@@ -11,5 +11,8 @@ FROM registry.access.redhat.com/ubi8/nginx-118
 USER root
 RUN mkdir /app
 COPY --from=build /app/dist /app
-#RUN chown -R 1001:0 /var/run/app
+COPY /app/dist /opt/app-root/src/app/dist
+COPY /app /opt/app-root/src/app
+RUN chown -R 1001:0 /var/run/app
 USER 1001
+CMD ["nginx", "-g", "daemon off;"]
