@@ -21,7 +21,7 @@ export default {
     getWeatherForecast()
     {
       axios
-          .get('https://localhost:44391/WeatherForecast')
+          .get('http://localhost:5000/WeatherForecast')
           .then(response => (this.msg = response))
     }
   }
